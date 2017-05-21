@@ -58,7 +58,7 @@ def AnalysisInputfile(user):
     psequence = [ind for ind, val in enumerate(h) if val[0:8] == 'Sequence' or val[0:8] == 'sequence']
     
     if len(psmiles) == 0 and len(psequence) == 0:
-        print 'All Descriptors were prepared by user'
+        print('All Descriptors were prepared by user')
         ise = [ind for ind,val in enumerate(h) if val == '']
         
         if len(ise) != 0: 
@@ -78,7 +78,7 @@ def AnalysisInputfile(user):
                 Array_Pro = []
        
     elif len(psmiles) == 1 and len(psequence) == 0:
-        print 'Ligand descriptors will be generated'
+        print('Ligand descriptors will be generated')
         import Descriptors_Extraction as DE
         data = data_array[:,psmiles[0]]
         Array_ligand = DE.Ligand_gen(data, Ligandgroup)
@@ -87,7 +87,7 @@ def AnalysisInputfile(user):
         Array_Pro = np.append(np.reshape(hx,(1,len(hx))),data_array[:,px],axis=0)
         
     elif len(psmiles) == 0 and len(psequence) == 1:
-        print 'Protein descriptors will be generated'
+        print('Protein descriptors will be generated')
         import Descriptors_Extraction as DE
         data = data_array[:,psequence[0]]
         Array_Pro = DE.Protein_gen(data,Proteingroup)
@@ -96,7 +96,7 @@ def AnalysisInputfile(user):
         Array_ligand = np.append(np.reshape(hx,(1,len(hx))),data_array[:,px],axis=0)
         
     elif len(psmiles) == 1 and len(psequence) == 1:
-        print 'Ligand & Protein descriptors will be generated'
+        print('Ligand & Protein descriptors will be generated')
         import Descriptors_Extraction as DE
         data1 = data_array[:,psmiles[0]]
         data2 = data_array[:,psequence[0]]
@@ -104,7 +104,7 @@ def AnalysisInputfile(user):
         Array_Pro = DE.Ligand_gen(data2,Proteingroup)
         
     elif len(psmiles) == 2 and len(psequence) == 0:
-        print 'Two different Ligand descriptors will be generated'
+        print('Two different Ligand descriptors will be generated')
         import Descriptors_Extraction as DE
         data1 = data_array[:,psmiles[0]]
         data2 = data_array[:,psmiles[1]]
@@ -112,7 +112,7 @@ def AnalysisInputfile(user):
         Array_Pro = DE.Ligand_gen(data2,Proteingroup)
         
     elif len(psmiles) == 0 and len(psequence) == 2:
-        print 'Two different Protein descriptors will be generated'
+        print('Two different Protein descriptors will be generated')
         import Descriptors_Extraction as DE
         data1 = data_array[:,psequence[0]]
         data2 = data_array[:,psequence[1]]
@@ -188,8 +188,8 @@ def Ligand_gen(data, Ligandgroup):
             elif j == '13':   #MOE-type          60
                 res = drug.GetMOE()
             
-            keys.extend(res.viewkeys())
-            values.extend(res.viewvalues())
+            keys.extend(res.keys())
+            values.extend(res.values())
         
         if i == 0:
             HL_list = keys
@@ -253,8 +253,8 @@ def Protein_gen(data, Proteingroup):
             elif jj == '11':    #pseudo amino acid composition   50
                 res = protein.GetPAAC(30)
                     
-            keys.extend(res.viewkeys())
-            values.extend(res.viewvalues())  
+            keys.extend(res.keys())
+            values.extend(res.values())  
         if ii == 0:
             HP_list = keys
             D_list.append(values)

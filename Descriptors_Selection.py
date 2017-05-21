@@ -11,8 +11,8 @@ def VIP(X, Y, H, NumDes):
     from sklearn.cross_validation import KFold
     import PCM_workflow as PW
     
-    print '############## VIP is being processed ###############'
-    M = list(X.viewkeys())
+    print('############## VIP is being processed ###############')
+    M = list(X.keys())
     
     H_VIP, X_VIP, Y_VIP, HArray = {},{},{},{}
     NumDesVIP = np.zeros((13,6), dtype=int)
@@ -116,7 +116,7 @@ def VIP_origin(X, Y, H):
     from sklearn.cross_validation import KFold
     import PCM_workflow as PW
     
-    print '############## VIP is being processed ###############'
+    print('############## VIP is being processed ###############')
     Y = Y.astype(np.float)
     
     Xtrain, Ytrain = X, Y

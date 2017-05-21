@@ -41,7 +41,7 @@ def CluterAnalysis(labels, Criteria, Expect_ext):
     Ind_ext = []
     counter = collections.Counter(labels)
     c_high_f = counter.most_common()
-    print c_high_f
+    print(c_high_f)
     
     while len(Ind_ext) <= Expect_ext:
         for i in c_high_f:

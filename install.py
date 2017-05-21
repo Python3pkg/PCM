@@ -4,8 +4,8 @@ import os
 try:
     import rdkit
 except ImportError:
-    print >> sys.stderr, 'rdkit not installed...'
-    print >> sys.stderr, 'build rdkit...'
+    print('rdkit not installed...', file=sys.stderr)
+    print('build rdkit...', file=sys.stderr)
     subprocess.call(['git', 'clone', 'https://github.com/rdkit/conda-rdkit.git'])
     os.chdir('conda-rdkit')
     subprocess.call(['conda', 'build', 'boost'])

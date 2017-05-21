@@ -41,33 +41,33 @@ def Xval(DL,DP,Y, user):
         ######################## Build 13 models ###########################    
         for model_iter in range(1,14):
             if model_iter == 1:   #model 1: Ligand only
-                print 'Model 1: L'
+                print('Model 1: L')
                 X, header = ligand, header_ligand 
                 NumDes[model_iter-1,model_iter-1] = len(header_ligand)
             elif model_iter == 2:  #model 2: Protein only
-                print 'Model 2: P'
+                print('Model 2: P')
                 X, header = protein, header_protein
                 NumDes[model_iter-1,model_iter-1] = len(header_protein)
             elif model_iter == 3:  #model 3: LxP
-                print 'Model 3: LxP'
+                print('Model 3: LxP')
                 X, header = Li_Pro, header_Li_Pro
                 NumDes[model_iter-1,model_iter-1] = len(header_Li_Pro)
             elif model_iter == 4:  #model 4: LxL
-                print 'Model 4: LxL'
+                print('Model 4: LxL')
                 X, header = Li_Li,  header_Li_Li
                 NumDes[model_iter-1,model_iter-1] = len(header_Li_Li)
             elif model_iter == 5:  #model 5: PxP
-                print 'Model 5: PxP'
+                print('Model 5: PxP')
                 X, header = Pro_Pro, header_Pro_Pro
                 NumDes[model_iter-1,model_iter-1] = len(header_Pro_Pro)
             elif model_iter == 6:      #model 6: L, P
-                print 'Model 6: L, P'
+                print('Model 6: L, P')
                 X,header = PCM.Inputs_2(ligand, header_ligand,
                                         protein, header_protein)
                 NumDes[model_iter-1,0] = len(header_ligand)
                 NumDes[model_iter-1,1] = len(header_protein)
             elif model_iter == 7:   #model 7: L, P, LxP 
-                print 'Model 7: L, P, LxP'
+                print('Model 7: L, P, LxP')
                 X, header = PCM.Inputs_3(ligand, header_ligand,                                            
                                          protein, header_protein,
                                          Li_Pro, header_Li_Pro)            
@@ -76,7 +76,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,2] = len(header_Li_Pro)
     
             elif model_iter == 8:   #model 8: L, P, LxL
-                print 'Model 8: L, P, LxL'
+                print('Model 8: L, P, LxL')
                 X, header = PCM.Inputs_3(ligand, header_ligand,
                                          protein, header_protein,
                                          Li_Li, header_Li_Li)
@@ -85,7 +85,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,3] = len(header_Li_Li)
         
             elif model_iter == 9:   #model 9: L, P, PxP
-                print 'Model 9: L, P, PxP'
+                print('Model 9: L, P, PxP')
                 X, header = PCM.Inputs_3(ligand, header_ligand,
                                          protein, header_protein,
                                          Pro_Pro, header_Pro_Pro)
@@ -94,7 +94,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,4] = len(header_Pro_Pro)
         
             elif model_iter == 10:   #model 10: L, P, LxP, LxL
-                print 'Model 10: L, P, LxP, LxL'
+                print('Model 10: L, P, LxP, LxL')
                 X, header = PCM.Inputs_4(ligand, header_ligand,
                                          protein, header_protein,
                                          Li_Pro, header_Li_Pro,
@@ -105,7 +105,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,3] = len(header_Li_Li)
                                        
             elif model_iter == 11:   #model 11: L, P, LxP, PxP
-                print 'Model 11: L, P, LxP, PxP'
+                print('Model 11: L, P, LxP, PxP')
                 X, header = PCM.Inputs_4(ligand, header_ligand,
                                          protein, header_protein,
                                          Li_Pro, header_Li_Pro,
@@ -116,7 +116,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,4] = len(header_Pro_Pro)
                                                                
             elif model_iter == 12:   #model 7: L, P, LxL, PxP
-                print 'Model 12: L, P, LxL, PxP'
+                print('Model 12: L, P, LxL, PxP')
                 X, header = PCM.Inputs_4(ligand, header_ligand,
                                          protein, header_protein,
                                          Li_Li, header_Li_Li,
@@ -127,7 +127,7 @@ def Xval(DL,DP,Y, user):
                 NumDes[model_iter-1,4] = len(header_Pro_Pro)
                                          
             elif model_iter == 13:   #model 8: L, P, LxL, PxP, LxP
-                print 'Model 13: L, P, LxL, PxP, LxP'
+                print('Model 13: L, P, LxL, PxP, LxP')
                 X, header = PCM.Inputs_5(ligand, header_ligand,
                                          protein, header_protein,
                                          Li_Li, header_Li_Li,
@@ -164,13 +164,13 @@ def Model_Selection(user):
     Xval_path = path+'/'+IndicatorName+'/XVAL'
     index = [int(i) for i in index]
     NumDes = pickle.load(open(Xval_path+'/NumDes.pkl','rb'))
-    indexrunning = range(1,14)
+    indexrunning = list(range(1,14))
     if index != [0]:
         indexrunning = list(set(indexrunning)-set(index))
         for ii in indexrunning:
             NumDes[ii-1,:] = 0
     else:
-        index = range(1,14)
+        index = list(range(1,14))
 
     Var_X, Var_header = {},{}   
     for i in index:
@@ -198,7 +198,7 @@ def Index_Train_Ext(X, user):
     Iter = user['Iteration']
     import numpy as np
     import Method_SamplingData as MS
-    M = list(X.viewkeys())
+    M = list(X.keys())
     
     numcol = []
     for j in M:
@@ -211,7 +211,7 @@ def Index_Train_Ext(X, user):
     for i in range(Iter):
         if Method == 'Random':
             import random
-            ind_ext = random.sample(range(len(X)), Expect_ext)
+            ind_ext = random.sample(list(range(len(X))), Expect_ext)
         elif Method == 'PCA':
             labels = MS.PCA(X, Expect_ext)
             ind_ext = MS.CluterAnalysis(labels, Criteria, Expect_ext)
@@ -231,8 +231,8 @@ def Prediction(XM, Y, ind_ext, user):
     import PredictivePerformance as PP
     import PCM_workflow as PW 
    
-    print '############## PLS prediction is being processed ###############'
-    M = list(XM.viewkeys())
+    print('############## PLS prediction is being processed ###############')
+    M = list(XM.keys())
     m_re = []
     for m in M:
         m_re.append(int(m[6:]))
@@ -249,7 +249,7 @@ def Prediction(XM, Y, ind_ext, user):
         SumPer = np.zeros((13,12,len(ind_ext)))
 
     for k in range(len(ind_ext)):
-        print 'Iteration: %i' %(k+1)
+        print('Iteration: %i' %(k+1))
         ind_ext_i = ind_ext[k]
         
         Ytr = np.delete(Y,ind_ext_i,axis=0)
@@ -267,7 +267,7 @@ def Prediction(XM, Y, ind_ext, user):
         YpCVes[:,0] = Y[ind_ext_i]
         
         for ind_M in m_re:
-            print ind_M +' is being processed'
+            print(ind_M +' is being processed')
             X = XM[ind_M]
             Xext, Yext = X[ind_ext_i], Y[ind_ext_i]
             Xtr = np.delete(X,ind_ext_i,axis=0)
@@ -304,7 +304,7 @@ def Yscrambling(XM,Y, user):
         import Method_SamplingData as MS
         import PCM_workflow as PW
     
-        print '############## Yscambling is being processed ###############'
+        print('############## Yscambling is being processed ###############')
         YY = []
         while len(YY) != NumPermute:
             Ypermute = np.random.permutation(Y)
@@ -313,7 +313,7 @@ def Yscrambling(XM,Y, user):
             else:
                 YY.append(Ypermute)
             
-        M = list(XM.viewkeys())  
+        M = list(XM.keys())  
         m_re = []
         for m in M:
             m_re.append(int(m[6:]))
@@ -322,13 +322,13 @@ def Yscrambling(XM,Y, user):
         Q2_intercept = np.zeros((13,1))  
         RQ_array = np.zeros((NumPermute+1,26))    
         for ind_M in m_re:
-            print ind_M +'....'
+            print(ind_M +'....')
             Xtr = XM[ind_M]
             kf = MS.CV_determination(Y,CV_Method)
             
             RR2,QQ2 = [],[]
             for indPer in range(len(YY)+1):
-                print "%s: %d%%" % ("Processing", (float(indPer)/len(YY))*100)
+                print("%s: %d%%" % ("Processing", (float(indPer)/len(YY))*100))
                 if indPer == 0:
                     Ytr = Y
                 else:
@@ -454,8 +454,8 @@ def Combine_array(NumDes,h, Mean,SD,R2,Q2,Q2ext,Q2permute,Scamb,user):
     
     #################### Write USERDEFINED Worksheet ###############
     worksheet = workbook.add_worksheet('UserDefined')
-    Listuser = list(user.viewkeys())
-    Valueuser = list(user.viewvalues())
+    Listuser = list(user.keys())
+    Valueuser = list(user.values())
     Valueuser = [str(k) for k in Valueuser] 
     
     for ii in range(len(Listuser)):
@@ -527,4 +527,4 @@ def Combine_array(NumDes,h, Mean,SD,R2,Q2,Q2ext,Q2permute,Scamb,user):
                     worksheet.write(jj,kk,hh[jj,kk])
     
     workbook.close()
-    print 'Complete processing --> Investigate the results'
+    print('Complete processing --> Investigate the results')

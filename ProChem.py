@@ -144,8 +144,8 @@ def Inputs_2(First, Header_First, Second, Header_Second):
     norm_2 = np.sqrt(c2)*np.ones([r,c2])
     Second = np.divide(Second,norm_2)
 
-    print 'Sum variance of b1: %0.1f, b2: %0.1f' %(sum(np.var(First, axis=0)), 
-                                                   sum(np.var(Second, axis=0)))
+    print('Sum variance of b1: %0.1f, b2: %0.1f' %(sum(np.var(First, axis=0)), 
+                                                   sum(np.var(Second, axis=0))))
             
     Descriptors = np.zeros((r, c1+c2))
     Descriptors[:,0:c1] = First
@@ -172,9 +172,9 @@ def Inputs_3(First, Header_First, Second, Header_Second, Third, Header_Third):
     norm_3 = np.sqrt(c3)*np.ones([r,c3])
     Third = np.divide(Third,norm_3)
     
-    print 'Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f' %(sum(np.var(First, axis=0)),
+    print('Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f' %(sum(np.var(First, axis=0)),
                                                               sum(np.var(Second, axis=0)), 
-                                                              sum(np.var(Third, axis=0)))
+                                                              sum(np.var(Third, axis=0))))
         
     Descriptors = np.zeros((r, c1+c2+c3))
     Descriptors[:,0:c1] = First
@@ -207,10 +207,10 @@ def Inputs_4(First, Header_First, Second, Header_Second,Third, Header_Third, Fou
     norm_4 = np.sqrt(c4)*np.ones([r,c4])
     Fouth = np.divide(Fouth,norm_4)
 
-    print 'Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f, b4: %0.1f' %(sum(np.var(First, axis=0)),
+    print('Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f, b4: %0.1f' %(sum(np.var(First, axis=0)),
                                                                             sum(np.var(Second, axis=0)), 
                                                                             sum(np.var(Third, axis=0)),
-                                                                            sum(np.var(Fouth, axis=0)))
+                                                                            sum(np.var(Fouth, axis=0))))
     Descriptors = np.zeros((r, c1+c2+c3+c4))
     Descriptors[:,0:c1] = First
     Descriptors[:,c1:c1+c2] = Second
@@ -248,11 +248,11 @@ def Inputs_5(First, Header_First, Second, Header_Second,Third, Header_Third, Fou
     Fouth = np.divide(Fouth,norm_4)
     Fifth = np.divide(Fifth,norm_5)
 
-    print 'Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f, b4: %0.1f, b5: %0.1f' %(sum(np.var(First, axis=0)),
+    print('Sum variance of b1: %0.1f, b2: %0.1f, b3: %0.1f, b4: %0.1f, b5: %0.1f' %(sum(np.var(First, axis=0)),
                                                                                     sum(np.var(Second, axis=0)), 
                                                                                     sum(np.var(Third, axis=0)),
                                                                                     sum(np.var(Fouth, axis=0)),
-                                                                                    sum(np.var(Fifth, axis=0)))
+                                                                                    sum(np.var(Fifth, axis=0))))
         
     Descriptors = np.zeros((r, c1+c2+c3+c4+c5))
     Descriptors[:,0:c1] = First
